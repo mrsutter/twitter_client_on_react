@@ -27,7 +27,10 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx'],
+    modulesDirectories: [
+      "src", "node_modules", "bower_components"
+    ]
   },
 
   module: {
@@ -43,6 +46,9 @@ module.exports = {
     }, {
       test: /\.css$/,
       loader: 'style-loader!css-loader'
+    }, {
+      test: /\.(svg|woff|eot|ttf|otf)$/,
+      loader: "url?limit=100000"
     }, {
       test: /\.(png|jpg)$/,
       loader: 'url-loader?limit=8192'

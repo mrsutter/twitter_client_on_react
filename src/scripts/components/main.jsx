@@ -1,4 +1,5 @@
 /** @jsx React.DOM */
+require("bootstrap/dist/css/bootstrap.css");
 
 var TwitterClientOnReactApp = require('./TwitterClientOnReactApp');
 var React = require('react');
