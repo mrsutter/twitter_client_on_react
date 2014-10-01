@@ -12,20 +12,21 @@ gulp.task('default', ['build-dev']);
 
 gulp.task('build-dev', function() {
   gulpWebpack(webpackConfig)
-    .pipe(gulp.dest('assets/'));
+    .pipe(gulp.dest('dist/assets/'));
   gulp.src(['src/index.html', 'src/favicon.ico'])
-    .pipe(gulp.dest('assets/'));
+    .pipe(gulp.dest('dist/'));
 });
 
 gulp.task('clean', function (cb) {
-  del(['assets/**/*'], cb);
+  del(['dist/**/*'], cb);
 });
 
 gulp.task("webpack-dev-server", function(callback) {
     var myConfig = Object.create(webpackConfig);
 
     new WebpackDevServer(webpack(myConfig), {
-        publicPath: '/' + myConfig.output.publicPath
+        publicPath: myConfig.output.publicPath,
+        contentBase: 'dist'
         // server and middleware options
     }).listen(8080, "0.0.0.0", function(err) {
         console.info(err, "-------------------------");

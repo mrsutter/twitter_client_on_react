@@ -13,7 +13,7 @@ module.exports = {
   output: {
     filename: 'main.js',
     publicPath: '/assets/',
-    path: path.join(__dirname, "assets")
+    path: path.join(__dirname, "dist/assets/")
   },
 
   cache: true,
