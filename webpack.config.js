@@ -6,12 +6,14 @@
  */
 
 'use strict';
+var path = require("path");
 
 module.exports = {
 
   output: {
     filename: 'main.js',
-    publicPath: '/assets/'
+    publicPath: '/assets/',
+    path: path.join(__dirname, "assets")
   },
 
   cache: true,
