@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var gulpWebpack = require('gulp-webpack');
 var webpack = require('webpack');
 var WebpackDevServer = require("webpack-dev-server");
 var webpackConfig = require ('./webpack.config.js');
@@ -11,17 +12,12 @@ gulp.task('default', function() {
 });
 
 gulp.task("webpack-dev-server", function(callback) {
-    // Start a webpack-dev-server
-    var compiler = webpack({
-        // configuration
-    });
-
     var myConfig = Object.create(webpackConfig);
 
     new WebpackDevServer(webpack(myConfig), {
         publicPath: "/" + myConfig.output.publicPath
         // server and middleware options
-    }).listen(8080, "localhost", function(err) {
+    }).listen(8080, "0.0.0.0", function(err) {
         console.info(err, "-------------------------");
         if(err) throw new gutil.PluginError("webpack-dev-server", err);
         // Server listening
