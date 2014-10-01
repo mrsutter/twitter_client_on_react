@@ -32,3 +32,4 @@ node_modules/
 dist
 assets
 /src/scripts/main.js
+bower_components
