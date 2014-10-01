@@ -1,18 +1,24 @@
+'use strict';
+
 var gulp = require('gulp');
 var gulpWebpack = require('gulp-webpack');
 var webpack = require('webpack');
 var WebpackDevServer = require("webpack-dev-server");
 var webpackConfig = require ('./webpack.config.js');
 var gutil = require("gulp-util");
+var del = require('del');
 
 gulp.task('default', ['build-dev']);
 
 gulp.task('build-dev', function() {
-  gulp.src('src/entry.js')
-    .pipe(gulpWebpack(webpackConfig))
+  gulpWebpack(webpackConfig)
     .pipe(gulp.dest('assets/'));
   gulp.src(['src/index.html', 'src/favicon.ico'])
     .pipe(gulp.dest('assets/'));
+});
+
+gulp.task('clean', function (cb) {
+  del(['assets/**/*'], cb);
 });
 
 gulp.task("webpack-dev-server", function(callback) {
