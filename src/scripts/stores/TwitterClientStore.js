@@ -27,10 +27,13 @@ function searchTwits(query) {
       function (e, data, res){
         if (e) console.error(e);
         var twits = JSON.parse(data);
-        _twits = twits["statuses"] || [];
-        console.log('twits', _twits);
-        TwitterClientStore.emitChange();
+        setTwits(twits["statuses"]);
       });
+}
+
+function setTwits(twits) {
+  _twits = twits || [];
+  TwitterClientStore.emitChange();
 }
 
 var TwitterClientStore = merge(EventEmitter.prototype, {
@@ -62,7 +65,6 @@ var TwitterClientStore = merge(EventEmitter.prototype, {
 AppDispatcher.register(function(payload) {
 
   var action = payload.action;
-  var text;
 
   switch(action.actionType) {
     case TwitterClientConstants.SEARCH_TWITS:
