@@ -20,6 +20,21 @@ require('../../styles/main.css');
 var imageURL = require('../../images/yeoman.png');
 
 var TwitterClientOnReactApp = React.createClass({
+
+  getInitialState: function () {
+    return {
+      twits: []
+    };
+  },
+
+  componentDidMount: function() {
+    TwitterClientStore.addChangeListener(this._onChange);
+  },
+
+  componentWillUnmount: function() {
+    TwitterClientStore.removeChangeListener(this._onChange);
+  },
+
   render: function() {
     return (
       <div className='main'>
@@ -27,9 +42,17 @@ var TwitterClientOnReactApp = React.createClass({
         <ReactTransitionGroup transitionName="fade">
           <img src={imageURL} />
         </ReactTransitionGroup>
+        {this.state.twits.map(function (twit) {
+          return <div>{twit.text}</div>
+        })}
       </div>
     );
-  }
+  },
+
+  _onChange: function () {
+    this.setState({twits: TwitterClientStore.getAll()});
+  },
+
 });
 
 module.exports = TwitterClientOnReactApp;

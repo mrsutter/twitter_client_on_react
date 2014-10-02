@@ -15,6 +15,9 @@ var oauth = new OAuth.OAuth(
 );
 var merge = require('react/lib/merge');
 
+var CHANGE_EVENT = 'change';
+
+var _twits = [];
 
 function searchTwits(query) {
     oauth.get(
@@ -24,12 +27,33 @@ function searchTwits(query) {
       function (e, data, res){
         if (e) console.error(e);
         var twits = JSON.parse(data);
-        console.log(twits);
-        // TwitActions.create(twits["statuses"]);
+        _twits = twits["statuses"] || [];
+        TwitterClientStore.emitChange();
       });
 }
 
 var TwitterClientStore = merge(EventEmitter.prototype, {
+  getAll: function () {
+    return _twits;
+  },
+
+  emitChange: function() {
+    this.emit(CHANGE_EVENT);
+  },
+
+  /**
+   * @param {function} callback
+   */
+  addChangeListener: function(callback) {
+    this.on(CHANGE_EVENT, callback);
+  },
+
+  /**
+   * @param {function} callback
+   */
+  removeChangeListener: function(callback) {
+    this.removeListener(CHANGE_EVENT, callback);
+  }
 
 });
 
