@@ -1,6 +1,7 @@
 'use strict';
 
 var OAuth = require('oauth');
+var q = require('promised-io/promise');
 
 var oauth = new OAuth.OAuth(
   'https://api.twitter.com/oauth/requesttoken',
@@ -13,7 +14,8 @@ var oauth = new OAuth.OAuth(
 );
 
 var TwitterClient = {
-  search: function (query, callback) {
+  search: function (query) {
+    var deferred = new q.Deferred();
     oauth.get(
       'https://api.twitter.com/1.1/search/tweets.json?q=' + encodeURIComponent(query) + '&resulttype=recent',
       '978792919-URT380OU0ofxqomr8hUPXOxgoJAMRqUODAGQEdoQ', //test user token
@@ -21,8 +23,9 @@ var TwitterClient = {
       function (e, data, res){
         if (e) console.error(e);
         var twits = JSON.parse(data);
-        callback(twits["statuses"]);
+        deferred.resolve(twits["statuses"]);
       });
+    return deferred.promise;
   },
 };
 

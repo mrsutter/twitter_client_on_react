@@ -11,9 +11,7 @@ var CHANGE_EVENT = 'change';
 var _twits = [];
 
 function searchTwits(query) {
-  TwitterClient.search(query, function (twits) {
-    setTwits(twits);
-  });
+  TwitterClient.search(query).then(setTwits);
 }
 
 function setTwits(twits) {

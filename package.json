@@ -12,6 +12,7 @@
   "dependencies": {
     "flux": "^2.0.1",
     "oauth": "^0.9.12",
+    "promised-io": "^0.3.4",
     "react": "~0.11.2",
     "react-router": "^0.7.0"
   },
