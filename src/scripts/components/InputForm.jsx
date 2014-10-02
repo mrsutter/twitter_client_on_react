@@ -16,12 +16,14 @@ var InputForm = React.createClass({
 
   render: function () {
     return (
+      <form onSubmit={this._onSubmit}>
         <div className="input-group">
           <input type="text" className="form-control" value={this.state.value} onChange={this._onInputChange}/>
           <span className="input-group-btn">
-            <input type="button" value="Go" className="btn" onClick={this._onGo}/>
+            <input type="submit" value="Go" className="btn"/>
           </span>
         </div>
+      </form>
       );
   },
 
@@ -29,7 +31,8 @@ var InputForm = React.createClass({
     this.setState({value: e.target.value});
   },
 
-  _onGo: function (e) {
+  _onSubmit: function (e) {
+    e.preventDefault();
     TwitterClientActions.searchTwits(this.state.value);
   },
 });
