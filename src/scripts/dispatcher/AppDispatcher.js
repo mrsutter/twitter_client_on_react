@@ -1,5 +1,8 @@
+'use strict';
+
 var Dispatcher = require('flux').Dispatcher;
 var copyProperties = require('react/lib/copyProperties');
+
 var AppDispatcher = copyProperties(new Dispatcher(), {
 
   /**

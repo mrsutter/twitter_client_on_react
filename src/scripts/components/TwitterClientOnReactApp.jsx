@@ -7,6 +7,7 @@
 var React = require('react/addons');
 var ReactTransitionGroup = React.addons.TransitionGroup;
 var InputForm = require('./InputForm');
+var TwitterClientStore = require('../stores/TwitterClientStore');
 
 // Export React so the devtools can find it
 (window !== window.top ? window.top : window).React = React;
