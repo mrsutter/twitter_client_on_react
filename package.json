@@ -10,8 +10,9 @@
   "mainInput": "main",
   "mainOutput": "main",
   "dependencies": {
-    "react-router": "^0.7.0",
-    "react": "~0.11.2"
+    "flux": "^2.0.1",
+    "react": "~0.11.2",
+    "react-router": "^0.7.0"
   },
   "devDependencies": {
     "css-loader": "~0.9.0",
