@@ -28,6 +28,7 @@ function searchTwits(query) {
         if (e) console.error(e);
         var twits = JSON.parse(data);
         _twits = twits["statuses"] || [];
+        console.log('twits', _twits);
         TwitterClientStore.emitChange();
       });
 }

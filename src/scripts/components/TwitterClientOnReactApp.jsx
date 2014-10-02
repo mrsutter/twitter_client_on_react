@@ -8,6 +8,7 @@ var React = require('react/addons');
 var ReactTransitionGroup = React.addons.TransitionGroup;
 var InputForm = require('./InputForm');
 var TwitterClientStore = require('../stores/TwitterClientStore');
+var Twit = require('./Twit');
 
 // Export React so the devtools can find it
 (window !== window.top ? window.top : window).React = React;
@@ -43,7 +44,7 @@ var TwitterClientOnReactApp = React.createClass({
           <img src={imageURL} />
         </ReactTransitionGroup>
         {this.state.twits.map(function (twit) {
-          return <div>{twit.text}</div>
+          return <Twit twit={twit}/>
         })}
       </div>
     );
